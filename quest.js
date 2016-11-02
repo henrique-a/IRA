@@ -3,26 +3,31 @@ var t = document.createTextNode("Calcular IRA");
 btncalcula.setAttribute("id", "btncalcula");
 
 $("document").ready(function (){
-     	
-    $("#butnotas").mouseover(function (){
+    
+    $("#btnnotas").mouseover(function (){
 		$(this).attr("class", "btnon");
 	});
 
-    $("#butnotas").mouseout(function (){
+    $("#btnnotas").mouseout(function (){
 		$(this).attr("class", "btnoff");
 	});
 
-	$("#butnotas").click(function quest(){
+	$("#btnnotas").click(function quest(){
         
-		if($("#i").val().length != 0 && $("#T").val().length != 0 && $("#C").val().length != 0){
-			$("<p>*Notas de 0 a 10, digite numeros quebrados da forma 9.9</p>").appendTo("#aviso");
-			$("<p>*Nas disciplinas anuais, serão considerado o semestre de início delas.</p>").appendTo("#aviso");
+		if ($("#i").val().length != 0 && $("#T").val().length != 0) {
+			$("<p>*Nas disciplinas anuais, será considerado o semestre de início delas.</p>").appendTo("#aviso");
 
 			for (var i = 1; i <= $("#i").val() ; i++) {
-				$("<p>Nota final da disciplina "+ i +": <input type='text' id='nota"+i+"'><br>").appendTo("#notas");
+				$("<p>Nota final da disciplina "+ i +": <input type='text' id='nota"+i+"' class='notas' min='0' max='10'><br>").appendTo("#notas");
 				$("<p>Carga horária da disciplina "+ i +": <input type='text' id='carga"+i+"'><br>").appendTo("#notas");
 				$("<p>Período em que a disciplina "+ i +" foi cursada: <input type='text' id='periodo"+i+"'><br><br>").appendTo("#notas");
 			}
+
+			var notas = document.getElementsByClassName("notas");
+			[].forEach.call(notas, function (nota) {
+    			nota.addEventListener("input", onNotaInput);
+ 		 	});
+ 		 	
 
 	        $(this).attr("class", "btnoff");
 	        $(this).css("cursor", "default");
@@ -32,17 +37,6 @@ $("document").ready(function (){
 		}	
 
 	});
-
-	
-	var options =  {onKeyPress: function(){
-
-	 	var masks = ['00000-000', '0-00-00-00'];
-	 	mask = (cep.length>7) ? masks[1] : masks[0];
-	 	$('nota1').mask(mask, options);
-	 	
-	}};
-
-	$('nota1').mask('00000-000', options);
 
 	btncalcula.onmouseover = function (){
 		this.setAttribute("class", "btnon");
@@ -55,12 +49,15 @@ $("document").ready(function (){
 	btncalcula.onclick = function (){
 
 		var T = $("#T").val();
-		var C = $("#C").val();
+		var C = 0;
+		for (var i = 1; i <= $("#i").val(); i++) {
+			C = C + document.getElementById("carga"+i).value;
+		}
 		var ira = 1000*(1 - 0.5*T/C);
 		var s1 = 0;
 		var s2 = 0;
 
-		for(var i = 1; i<= $("#i").val(); i++){
+		for(var i = 1; i <= $("#i").val(); i++){
 
 			var nota = document.getElementById("nota"+i).value;
 			var carga = document.getElementById("carga"+i).value;
@@ -75,12 +72,10 @@ $("document").ready(function (){
 		ira = ira*s1/s2;
 		this.setAttribute("class", "btnoff");
 		$("#btncalcula").css("cursor", "default");
-		$("#calcula").append("<span>O seu IRA individual Ã© "+ira+"</span>");
+		$("#calcula").append("<span>O seu IRA individual é "+ira+"</span>");
 		$("#btncalcula").prop("disabled",true);
 
-	}
-	
-	
+	}	
 
 });
 			
