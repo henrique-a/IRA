@@ -27,7 +27,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     </li>
     <li><a href="#" class="w3-padding-large w3-white">Home</a></li>
-    <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Como é calculado o IRA Individual?</a></li>
+    <li class="w3-hide-small"><a href="#como-calcular" class="w3-padding-large w3-hover-white">Como é calculado o IRA Individual?</a></li>
   </ul>
 
   <!-- Navbar on small screens -->
@@ -40,10 +40,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <header class="w3-container w3-red w3-center w3-padding-128">
   <h1 class="w3-margin w3-jumbo">CALCULE SEU IRA</h1>
-  <button class="w3-btn w3-padding-16 w3-large w3-margin-top">Get Started</button>
+  <a href="#start" class="w3-btn w3-padding-16 w3-large w3-margin-top">Get Started</a>
 </header>
 
 <!-- First Grid -->
+<a name="start">
 <div class="w3-row-padding w3-padding-64 w3-container">
   <div class="w3-content">
     <div class="w3-twothird">
@@ -65,6 +66,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Second Grid -->
+<a name="como-calcular">
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
     <div class="w3-content">
         <div class="w3-twothird">
@@ -76,7 +78,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           <h5>Ni = nota final da disciplina "i";
           <h5>Ci = carga horária da disciplina 
           <h5>Pi = período em que a disciplina "i" foi cursada, obedecendo à seguinte limitação: Pi = mínimo{6, semestre em que a disciplina foi cursada}. Nas disciplinas anuais, será considerado o semestre de início delas.
-        </div>
+          <h5>Assim, o IRA é calculado de acordo com a seguinte fómula:
+          <img src="formula.gif">  
+      </div>
     </div>
 </div>
 
