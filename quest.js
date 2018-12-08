@@ -61,6 +61,7 @@ $("document").ready(function (){
 		}
 
 		ira = ira*s1/s2;
+		$("#calcula .input").remove();
 		$("#calcula").append("<span class='input'>O seu IRA individual é "+ira+"</span>");
 
 	}	
